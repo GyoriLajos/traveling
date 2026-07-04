@@ -37,6 +37,6 @@ public class Traveler {
             joinColumns = @JoinColumn(name = "traveler_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )
-    private List<Activity> students = new ArrayList<>();
+    private List<Activity> activities = new ArrayList<>();
 
 }
