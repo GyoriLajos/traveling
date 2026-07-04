@@ -3,6 +3,9 @@ package com.example.traveling.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -27,5 +30,13 @@ public class Traveler {
     private String categoryPreference;
     @Column(nullable = false)
     private Double budget;
+
+    @ManyToMany
+    @JoinTable(
+            name = "traveler_activity",
+            joinColumns = @JoinColumn(name = "traveler_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id")
+    )
+    private List<Activity> students = new ArrayList<>();
 
 }

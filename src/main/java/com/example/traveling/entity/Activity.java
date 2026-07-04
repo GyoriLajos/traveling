@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,5 +27,12 @@ public class Activity {
     private Double cost;
     @Column(nullable = false)
     private String location;
+
+    @ManyToOne
+    @JoinColumn(name = "destination_id", nullable = false)
+    private Destination destination;
+
+    @ManyToMany(mappedBy = "activities")
+    private List<Traveler> travelers = new ArrayList<>();
 
 }
