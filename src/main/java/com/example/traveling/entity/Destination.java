@@ -3,6 +3,9 @@ package com.example.traveling.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,5 +25,8 @@ public class Destination {
     @Column(columnDefinition = "TEXT")
     private String description;
     private int popularity;
+
+    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
+    List<Activity> activities = new ArrayList<>();
 
 }
