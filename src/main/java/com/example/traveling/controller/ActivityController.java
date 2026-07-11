@@ -1,4 +1,4 @@
-package com.example.traveling.Controller;
+package com.example.traveling.controller;
 
 import com.example.traveling.entity.Activity;
 import com.example.traveling.service.ActivityService;
