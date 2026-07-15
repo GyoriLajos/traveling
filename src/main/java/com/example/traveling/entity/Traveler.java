@@ -19,9 +19,9 @@ public class Traveler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String first_name;
+    private String firstName;
     @Column(nullable = false)
-    private String last_name;
+    private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
     @Column(name = "phone_number")
