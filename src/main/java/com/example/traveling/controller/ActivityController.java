@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 public class ActivityController {
 
-    public final ActivityService activityService;
+    private final ActivityService activityService;
 
     @PostMapping
     public ResponseEntity<Activity> createActivity(@RequestBody Activity activity) {
