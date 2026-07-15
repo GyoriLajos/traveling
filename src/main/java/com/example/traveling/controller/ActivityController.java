@@ -20,31 +20,31 @@ public class ActivityController {
     @PostMapping
     public ResponseEntity<Activity> createActivity(@RequestBody Activity activity) {
         log.info("Request new Activity create");
-        return ResponseEntity.status(201).body(activityService.newActivity(activity));
+        return ResponseEntity.status(201).body(activityService.save(activity));
     }
 
     @PutMapping("/{id}")
      public ResponseEntity<Activity> updateActivityById(@PathVariable Long id,@RequestBody Activity updatedActivity) {
         log.info("Request exist Activity update");
-        return ResponseEntity.ok().body(activityService.updateActivityById(id,updatedActivity));
+        return ResponseEntity.ok().body(activityService.updateById(id,updatedActivity));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Activity> getActivityById(@PathVariable Long id) {
         log.info("GET request Activity by Id");
-        return ResponseEntity.ok(activityService.getActivityById(id));
+        return ResponseEntity.ok(activityService.getEntityById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<Activity>> findAllActivities() {
         log.info("GET request of Activities list");
-        return ResponseEntity.ok(activityService.findAllActivities());
+        return ResponseEntity.ok(activityService.findAllEntities());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         log.info("Delete request of Activity by Id");
-        activityService.deleteById(id);
+        activityService.deleteEntityById(id);
         return ResponseEntity.status(204).build();
     }
 }
