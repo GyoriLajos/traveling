@@ -15,8 +15,8 @@ import java.util.List;
 public class TravelerModel {
 
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String phoneNumber;
     private String categoryPreference;
