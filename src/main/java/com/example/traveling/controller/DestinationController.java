@@ -1,7 +1,10 @@
 package com.example.traveling.controller;
 
 import com.example.traveling.entity.Destination;
+import com.example.traveling.model.DestinationModel;
 import com.example.traveling.service.DestinationService;
+import com.example.traveling.util.DestinationMapper;
+import com.example.traveling.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,27 +22,31 @@ public class DestinationController {
     private final DestinationService destinationService;
 
     @PostMapping
-    public ResponseEntity<Destination> createDestination(@RequestBody Destination destination) {
+    public ResponseEntity<DestinationModel> createDestination(@RequestBody Destination destination) {
         log.info("Request new Destination create");
-        return ResponseEntity.status(201).body(destinationService.save(destination));
+        Destination savedDestination = destinationService.save(destination);
+        return ResponseEntity.status(201).body(DestinationMapper.mapDestinationEntityToDestinationModel(savedDestination));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Destination> updateDestinationById(@PathVariable Long id, @RequestBody Destination updatedDestination) {
+    public ResponseEntity<DestinationModel> updateDestinationById(@PathVariable Long id, @RequestBody Destination updatedDestination) {
         log.info("Request exist Destination update");
-        return ResponseEntity.ok().body(destinationService.updateById(id, updatedDestination));
+        Destination savedDestination = destinationService.updateById(id, updatedDestination);
+        return ResponseEntity.ok(DestinationMapper.mapDestinationEntityToDestinationModel(savedDestination));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Destination> getDestinationById(@PathVariable Long id) {
+    public ResponseEntity<DestinationModel> getDestinationById(@PathVariable Long id) {
         log.info("GET request Destination by Id");
-        return ResponseEntity.ok(destinationService.getEntityById(id));
+        Destination destination = destinationService.getEntityById(id);
+        return ResponseEntity.ok(DestinationMapper.mapDestinationEntityToDestinationModel(destination));
     }
 
     @GetMapping
-    public ResponseEntity<List<Destination>> findAllDestinations() {
+    public ResponseEntity<List<DestinationModel>> findAllDestinations() {
         log.info("GET request of Destinations list");
-        return ResponseEntity.ok(destinationService.findAllEntities());
+        List<Destination> destinations = destinationService.findAllEntities();
+        return ResponseEntity.ok(Mapper.map(destinations, DestinationMapper::mapDestinationEntityToDestinationModel));
     }
 
     @DeleteMapping("/{id}")

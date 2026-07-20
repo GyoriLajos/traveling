@@ -1,7 +1,10 @@
 package com.example.traveling.controller;
 
 import com.example.traveling.entity.Activity;
+import com.example.traveling.model.ActivityModel;
 import com.example.traveling.service.ActivityService;
+import com.example.traveling.util.ActivityMapper;
+import com.example.traveling.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,27 +21,31 @@ public class ActivityController {
     private final ActivityService activityService;
 
     @PostMapping
-    public ResponseEntity<Activity> createActivity(@RequestBody Activity activity) {
+    public ResponseEntity<ActivityModel> createActivity(@RequestBody Activity activity) {
         log.info("Request new Activity create");
-        return ResponseEntity.status(201).body(activityService.save(activity));
+        Activity savedActivity = activityService.save(activity);
+        return ResponseEntity.status(201).body(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
 
     @PutMapping("/{id}")
-     public ResponseEntity<Activity> updateActivityById(@PathVariable Long id,@RequestBody Activity updatedActivity) {
+    public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @RequestBody Activity updatedActivity) {
         log.info("Request exist Activity update");
-        return ResponseEntity.ok().body(activityService.updateById(id,updatedActivity));
+        Activity savedActivity = activityService.updateById(id, updatedActivity);
+        return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Activity> getActivityById(@PathVariable Long id) {
+    public ResponseEntity<ActivityModel> getActivityById(@PathVariable Long id) {
         log.info("GET request Activity by Id");
-        return ResponseEntity.ok(activityService.getEntityById(id));
+        Activity activity = activityService.getEntityById(id);
+        return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModel(activity));
     }
 
     @GetMapping
-    public ResponseEntity<List<Activity>> findAllActivities() {
+    public ResponseEntity<List<ActivityModel>> findAllActivities() {
         log.info("GET request of Activities list");
-        return ResponseEntity.ok(activityService.findAllEntities());
+        List<Activity> activities = activityService.findAllEntities();
+        return ResponseEntity.ok(Mapper.map(activities, ActivityMapper::mapActivityEntityToActivityModel));
     }
 
     @DeleteMapping("/{id}")
