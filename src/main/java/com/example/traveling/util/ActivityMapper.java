@@ -30,6 +30,7 @@ public class ActivityMapper {
                         .date(currentEntity.getDate())
                         .cost(currentEntity.getCost())
                         .location(currentEntity.getLocation())
+                        .travelers(map(currentEntity.getTravelers(), TravelerMapper::mapTravelerEntityToTravelerModel))
                         .build());
     }
 }

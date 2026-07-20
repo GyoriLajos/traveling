@@ -21,7 +21,6 @@ public class TravelerModel {
     private String phoneNumber;
     private String categoryPreference;
     private Double budget;
-    private List<DestinationModel> destinations;
     private List<ActivityModel> activities;
 
 }

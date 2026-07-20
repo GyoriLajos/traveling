@@ -20,5 +20,4 @@ public class ActivityModel {
     private Double cost;
     private String location;
     private List<TravelerModel> travelers;
-    private List<DestinationModel> destinations;
 }

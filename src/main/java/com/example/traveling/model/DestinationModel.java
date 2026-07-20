@@ -18,5 +18,4 @@ public class DestinationModel {
     private String description;
     private int popularity;
     private List<ActivityModel> activities;
-    private List<TravelerModel> travelers;
 }
