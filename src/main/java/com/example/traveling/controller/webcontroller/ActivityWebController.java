@@ -2,6 +2,7 @@ package com.example.traveling.controller.webcontroller;
 
 import com.example.traveling.entity.Activity;
 import com.example.traveling.model.ActivityCreateModel;
+import com.example.traveling.model.ActivityModelWithTraveler;
 import com.example.traveling.service.ActivityService;
 import com.example.traveling.util.ActivityMapper;
 import com.example.traveling.util.Mapper;
@@ -58,6 +59,15 @@ public class ActivityWebController {
         log.info("GET request Activity by Id (Thymeleaf)");
         Activity activity = activityService.getEntityById(id);
         ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(activity);
+        model.addAttribute("activity",activityCreateModel);
+        return "activity-details";
+    }
+
+    @GetMapping("/{id}/travelers")
+    public String getActivityByIdWithTraveler(@PathVariable Long id, Model model) {
+        log.info("GET request Activity by Id (Thymeleaf)");
+        Activity activity = activityService.getEntityById(id);
+        ActivityModelWithTraveler activityCreateModel = ActivityMapper.mapActivityEntityToActivityModelWithTraveler(activity);
         model.addAttribute("activity",activityCreateModel);
         return "activity-details";
     }
