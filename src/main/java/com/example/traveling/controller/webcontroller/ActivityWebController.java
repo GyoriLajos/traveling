@@ -9,8 +9,8 @@ import com.example.traveling.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class ActivityWebController {
     public String createActivity(@ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
         log.info("create activity (Thymeleaf)");
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
-        activityService.save(activity);
+        activityService.saveWithDestination(activity, activityCreateModel.getDestinationId());
         return "redirect:/activities";
     }
 
@@ -50,7 +50,7 @@ public class ActivityWebController {
         log.info("edit activity (Thymeleaf)");
         Activity existingActivity = activityService.getEntityById(id);
         ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(existingActivity);
-        model.addAttribute("newactivity", existingActivity);
+        model.addAttribute("newactivity", activityCreateModel);
         return "activity-create";
     }
 
@@ -83,7 +83,7 @@ public class ActivityWebController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteById(@PathVariable long id) {
+    public String deleteById(@PathVariable Long id) {
         log.info("delete activity (Thymeleaf)");
         activityService.deleteEntityById(id);
         return "redirect:/activities";

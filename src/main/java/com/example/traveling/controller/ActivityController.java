@@ -1,12 +1,13 @@
 package com.example.traveling.controller;
 
 import com.example.traveling.entity.Activity;
-import com.example.traveling.model.ActivityModel;
 import com.example.traveling.model.ActivityCreateModel;
+import com.example.traveling.model.ActivityModel;
 import com.example.traveling.model.ActivityModelWithTraveler;
 import com.example.traveling.service.ActivityService;
 import com.example.traveling.util.ActivityMapper;
 import com.example.traveling.util.Mapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +24,15 @@ public class ActivityController {
     private final ActivityService activityService;
 
     @PostMapping
-    public ResponseEntity<ActivityModel> createActivity(@RequestBody ActivityCreateModel activityCreateModel) {
+    public ResponseEntity<ActivityModel> createActivity(@Valid @RequestBody ActivityCreateModel activityCreateModel) {
         log.info("Request new Activity create");
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
-        Activity savedActivity = activityService.save(activity);
+        Activity savedActivity = activityService.saveWithDestination(activity, activityCreateModel.getDestinationId());
         return ResponseEntity.status(201).body(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @RequestBody ActivityCreateModel updatedActCreateMo) {
+    public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @Valid @RequestBody ActivityCreateModel updatedActCreateMo) {
         log.info("Request exist Activity update");
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(updatedActCreateMo);
         Activity savedActivity = activityService.updateById(id, activity);
@@ -47,7 +48,7 @@ public class ActivityController {
 
     @GetMapping("/{id}/travelers")
     public ResponseEntity<ActivityModelWithTraveler> getActivityByIdWithTraveler(@PathVariable Long id) {
-        log.info("GET request Activity by Id");
+        log.info("GET request Activity by Id with Travelers");
         Activity activity = activityService.getEntityById(id);
         return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModelWithTraveler(activity));
     }
