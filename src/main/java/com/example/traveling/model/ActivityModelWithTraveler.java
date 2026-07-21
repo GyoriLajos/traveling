@@ -12,11 +12,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class ActivityModel {
+public class ActivityModelWithTraveler {
 
     private Long id;
     private String name;
     private LocalDate date;
     private Double cost;
     private String location;
+    private List<TravelerModel> travelers;
 }

@@ -1,7 +1,10 @@
 package com.example.traveling.controller.webcontroller;
 
 import com.example.traveling.entity.Activity;
+import com.example.traveling.model.ActivityCreateModel;
 import com.example.traveling.service.ActivityService;
+import com.example.traveling.util.ActivityMapper;
+import com.example.traveling.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,20 +23,23 @@ public class ActivityWebController {
 
     @GetMapping("/newactivity")
     public String newActivity(Model model) {
-        log.info("create activity (Thymeleaf)");
-        model.addAttribute("newactivity",new Activity());
+        log.info("new activity (Thymeleaf)");
+        model.addAttribute("newactivity",new ActivityCreateModel());
         return "activity-create";
     }
 
     @PostMapping
-    public String createActivity(@ModelAttribute("newactivity") Activity activity) {
+    public String createActivity(@ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
+        log.info("create activity (Thymeleaf)");
+        Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
         activityService.save(activity);
         return "redirect:/activities";
     }
 
     @PostMapping("/update/{id}")
-    public String updateActivityById(@PathVariable Long id,@ModelAttribute("newactivity") Activity activity) {
+    public String updateActivityById(@PathVariable Long id,@ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
         log.info("update activity (Thymeleaf)");
+        Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
         activityService.updateById(id,activity);
         return "redirect:/activities";
     }
@@ -42,6 +48,7 @@ public class ActivityWebController {
     public String editActivity(@PathVariable Long id,Model model) {
         log.info("edit activity (Thymeleaf)");
         Activity existingActivity = activityService.getEntityById(id);
+        ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(existingActivity);
         model.addAttribute("newactivity",existingActivity);
         return "activity-create";
     }
@@ -49,7 +56,9 @@ public class ActivityWebController {
     @GetMapping("/{id}")
     public String getActivityById(@PathVariable Long id, Model model) {
         log.info("GET request Activity by Id (Thymeleaf)");
-        model.addAttribute("activity",activityService.getEntityById(id));
+        Activity activity = activityService.getEntityById(id);
+        ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(activity);
+        model.addAttribute("activity",activityCreateModel);
         return "activity-details";
     }
 
@@ -57,7 +66,9 @@ public class ActivityWebController {
     public String findAllActivities(Model model) {
         log.info("GET request of Activities list (Thymeleaf)");
         List<Activity> activityList = activityService.findAllEntities();
-        model.addAttribute("activities",activityList);
+        List<ActivityCreateModel> activityCreateModelList = Mapper
+                .map(activityList,ActivityMapper::mapActivityEntityToActivityCreateModel);
+        model.addAttribute("activities",activityCreateModelList);
         return "activity-list";
     }
 

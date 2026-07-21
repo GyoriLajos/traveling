@@ -3,6 +3,7 @@ package com.example.traveling.util;
 import com.example.traveling.entity.Activity;
 import com.example.traveling.model.ActivityCreateModel;
 import com.example.traveling.model.ActivityModel;
+import com.example.traveling.model.ActivityModelWithTraveler;
 
 import static com.example.traveling.util.Mapper.map;
 
@@ -22,6 +23,18 @@ public class ActivityMapper {
                         .build());
     }
 
+    public static ActivityModelWithTraveler mapActivityEntityToActivityModelWithTraveler(Activity entity) {
+        return map(entity, currentEntity ->
+                ActivityModelWithTraveler.builder()
+                        .id(currentEntity.getId())
+                        .name(currentEntity.getName())
+                        .date(currentEntity.getDate())
+                        .cost(currentEntity.getCost())
+                        .location(currentEntity.getLocation())
+                        .travelers(map(currentEntity.getTravelers(), TravelerMapper::mapTravelerEntityToTravelerModel))
+                        .build());
+    }
+
     public static ActivityModel mapActivityEntityToActivityModel(Activity entity) {
         return map(entity, currentEntity ->
                 ActivityModel.builder()
@@ -30,7 +43,16 @@ public class ActivityMapper {
                         .date(currentEntity.getDate())
                         .cost(currentEntity.getCost())
                         .location(currentEntity.getLocation())
-                        .travelers(map(currentEntity.getTravelers(), TravelerMapper::mapTravelerEntityToTravelerModel))
+                        .build());
+    }
+
+    public static ActivityCreateModel mapActivityEntityToActivityCreateModel(Activity entity) {
+        return map(entity, currentEntity ->
+                ActivityCreateModel.builder()
+                        .name(currentEntity.getName())
+                        .date(currentEntity.getDate())
+                        .cost(currentEntity.getCost())
+                        .location(currentEntity.getLocation())
                         .build());
     }
 }

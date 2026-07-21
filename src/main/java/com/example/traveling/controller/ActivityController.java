@@ -2,6 +2,7 @@ package com.example.traveling.controller;
 
 import com.example.traveling.entity.Activity;
 import com.example.traveling.model.ActivityModel;
+import com.example.traveling.model.ActivityCreateModel;
 import com.example.traveling.service.ActivityService;
 import com.example.traveling.util.ActivityMapper;
 import com.example.traveling.util.Mapper;
@@ -21,16 +22,18 @@ public class ActivityController {
     private final ActivityService activityService;
 
     @PostMapping
-    public ResponseEntity<ActivityModel> createActivity(@RequestBody Activity activity) {
+    public ResponseEntity<ActivityModel> createActivity(@RequestBody ActivityCreateModel activityCreateModel) {
         log.info("Request new Activity create");
+        Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
         Activity savedActivity = activityService.save(activity);
         return ResponseEntity.status(201).body(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @RequestBody Activity updatedActivity) {
+    public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @RequestBody ActivityCreateModel updatedActCreateMo) {
         log.info("Request exist Activity update");
-        Activity savedActivity = activityService.updateById(id, updatedActivity);
+        Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(updatedActCreateMo);
+        Activity savedActivity = activityService.updateById(id,activity);
         return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
 

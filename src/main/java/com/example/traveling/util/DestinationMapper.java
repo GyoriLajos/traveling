@@ -3,6 +3,7 @@ package com.example.traveling.util;
 import com.example.traveling.entity.Destination;
 import com.example.traveling.model.DestinationCreateModel;
 import com.example.traveling.model.DestinationModel;
+import com.example.traveling.model.DestinationModelWithActivity;
 
 import static com.example.traveling.util.Mapper.map;
 
@@ -21,6 +22,18 @@ public class DestinationMapper {
                         .build());
     }
 
+    public static DestinationModelWithActivity mapDestinationEntityToDestinationModelWithActivity(Destination entity) {
+        return map(entity, currentEntity ->
+                DestinationModelWithActivity.builder()
+                        .id(currentEntity.getId())
+                        .cityName(currentEntity.getCityName())
+                        .region(currentEntity.getRegion())
+                        .description(currentEntity.getDescription())
+                        .popularity(currentEntity.getPopularity())
+                        .activities(map(currentEntity.getActivities(), ActivityMapper::mapActivityEntityToActivityModel))
+                        .build());
+    }
+
     public static DestinationModel mapDestinationEntityToDestinationModel(Destination entity) {
         return map(entity, currentEntity ->
                 DestinationModel.builder()
@@ -29,7 +42,6 @@ public class DestinationMapper {
                         .region(currentEntity.getRegion())
                         .description(currentEntity.getDescription())
                         .popularity(currentEntity.getPopularity())
-                        .activities(map(currentEntity.getActivities(), ActivityMapper::mapActivityEntityToActivityModel))
                         .build());
     }
 }

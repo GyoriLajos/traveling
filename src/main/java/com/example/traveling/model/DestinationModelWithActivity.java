@@ -1,5 +1,6 @@
 package com.example.traveling.model;
 
+
 import lombok.*;
 
 import java.util.List;
@@ -10,11 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class DestinationModel {
+public class DestinationModelWithActivity {
 
     private Long id;
     private String cityName;
     private String region;
     private String description;
     private int popularity;
+    private List<ActivityModel> activities;
 }
