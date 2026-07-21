@@ -4,7 +4,6 @@ package com.example.traveling.model;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter

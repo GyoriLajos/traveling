@@ -1,6 +1,5 @@
 package com.example.traveling.service;
 
-
 import com.example.traveling.entity.Activity;
 import com.example.traveling.repository.ActivityRepository;
 import com.example.traveling.service.base.BaseServiceImpl;

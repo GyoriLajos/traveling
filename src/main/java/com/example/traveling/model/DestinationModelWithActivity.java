@@ -1,6 +1,5 @@
 package com.example.traveling.model;
 
-
 import lombok.*;
 
 import java.util.List;
