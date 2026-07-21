@@ -1,10 +1,12 @@
 package com.example.traveling.controller;
 
 import com.example.traveling.entity.Traveler;
+import com.example.traveling.model.TravelerCreateModel;
 import com.example.traveling.model.TravelerModel;
 import com.example.traveling.service.TravelerService;
 import com.example.traveling.util.Mapper;
 import com.example.traveling.util.TravelerMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +18,23 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/travelers")
 @Slf4j
-
 public class TravelerController {
 
     private final TravelerService travelerService;
 
     @PostMapping
-    public ResponseEntity<TravelerModel> createTraveler(@RequestBody Traveler traveler) {
+    public ResponseEntity<TravelerModel> createTraveler(@Valid @RequestBody TravelerCreateModel travelerCreateModel) {
         log.info("Request new Traveler create");
+        Traveler traveler = TravelerMapper.mapCreateTravelerModelToTravelerEntity(travelerCreateModel);
         Traveler savedTraveler = travelerService.save(traveler);
         return ResponseEntity.status(201).body(TravelerMapper.mapTravelerEntityToTravelerModel(savedTraveler));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TravelerModel> updateTravelerById(@PathVariable Long id, @RequestBody Traveler updatedTraveler) {
+    public ResponseEntity<TravelerModel> updateTravelerById(@PathVariable Long id, @Valid @RequestBody TravelerCreateModel travelerCreateModel) {
         log.info("Request exist Traveler update");
-        Traveler savedTraveler = travelerService.updateById(id, updatedTraveler);
+        Traveler traveler = TravelerMapper.mapCreateTravelerModelToTravelerEntity(travelerCreateModel);
+        Traveler savedTraveler = travelerService.updateById(id, traveler);
         return ResponseEntity.ok(TravelerMapper.mapTravelerEntityToTravelerModel(savedTraveler));
     }
 
@@ -55,5 +58,4 @@ public class TravelerController {
         travelerService.deleteEntityById(id);
         return ResponseEntity.status(204).build();
     }
-
 }
