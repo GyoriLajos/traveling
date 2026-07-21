@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class Activity {
 
     @Id
@@ -27,12 +26,10 @@ public class Activity {
     private Double cost;
     @Column(nullable = false)
     private String location;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_id", nullable = false)
     private Destination destination;
-
+    @Builder.Default
     @ManyToMany(mappedBy = "activities")
     private List<Traveler> travelers = new ArrayList<>();
-
 }

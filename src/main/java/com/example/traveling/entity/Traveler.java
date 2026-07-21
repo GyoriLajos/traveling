@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class Traveler {
 
     @Id
@@ -30,13 +29,12 @@ public class Traveler {
     private String categoryPreference;
     @Column(nullable = false)
     private Double budget;
-
-    @ManyToMany
+    @Builder.Default
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "traveler_activity",
             joinColumns = @JoinColumn(name = "traveler_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )
     private List<Activity> activities = new ArrayList<>();
-
 }
