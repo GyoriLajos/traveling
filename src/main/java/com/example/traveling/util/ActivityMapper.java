@@ -10,7 +10,6 @@ import static com.example.traveling.util.Mapper.map;
 public class ActivityMapper {
 
     private ActivityMapper() {
-
     }
 
     public static Activity mapCreateActivityModelToActivityEntity(ActivityCreateModel model) {
@@ -53,6 +52,7 @@ public class ActivityMapper {
                         .date(currentEntity.getDate())
                         .cost(currentEntity.getCost())
                         .location(currentEntity.getLocation())
+                        .destinationId(currentEntity.getDestination() != null ? currentEntity.getDestination().getId() : null)
                         .build());
     }
 }

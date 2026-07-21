@@ -1,10 +1,12 @@
 package com.example.traveling.controller;
 
 import com.example.traveling.entity.Destination;
+import com.example.traveling.model.DestinationCreateModel;
 import com.example.traveling.model.DestinationModel;
 import com.example.traveling.service.DestinationService;
 import com.example.traveling.util.DestinationMapper;
 import com.example.traveling.util.Mapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +18,23 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/destinations")
 @Slf4j
-
 public class DestinationController {
 
     private final DestinationService destinationService;
 
     @PostMapping
-    public ResponseEntity<DestinationModel> createDestination(@RequestBody Destination destination) {
+    public ResponseEntity<DestinationModel> createDestination(@Valid @RequestBody DestinationCreateModel destinationCreateModel) {
         log.info("Request new Destination create");
+        Destination destination = DestinationMapper.mapCreateDestinationModelToDestinationEntity(destinationCreateModel);
         Destination savedDestination = destinationService.save(destination);
         return ResponseEntity.status(201).body(DestinationMapper.mapDestinationEntityToDestinationModel(savedDestination));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DestinationModel> updateDestinationById(@PathVariable Long id, @RequestBody Destination updatedDestination) {
+    public ResponseEntity<DestinationModel> updateDestinationById(@PathVariable Long id, @Valid @RequestBody DestinationCreateModel destinationCreateModel) {
         log.info("Request exist Destination update");
-        Destination savedDestination = destinationService.updateById(id, updatedDestination);
+        Destination destination = DestinationMapper.mapCreateDestinationModelToDestinationEntity(destinationCreateModel);
+        Destination savedDestination = destinationService.updateById(id, destination);
         return ResponseEntity.ok(DestinationMapper.mapDestinationEntityToDestinationModel(savedDestination));
     }
 

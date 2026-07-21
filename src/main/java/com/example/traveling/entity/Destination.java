@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class Destination {
 
     @Id
@@ -25,8 +24,7 @@ public class Destination {
     @Column(columnDefinition = "TEXT")
     private String description;
     private int popularity;
-
-    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
-    List<Activity> activities = new ArrayList<>();
-
+    @Builder.Default
+    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Activity> activities = new ArrayList<>();
 }

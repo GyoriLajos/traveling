@@ -3,14 +3,13 @@ package com.example.traveling.service;
 import com.example.traveling.entity.Traveler;
 import com.example.traveling.repository.TravelerRepository;
 import com.example.traveling.service.base.BaseServiceImpl;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 
-public class TravelerService extends BaseServiceImpl<Traveler,Long,TravelerRepository> {
+public class TravelerService extends BaseServiceImpl<Traveler, Long, TravelerRepository> {
 
     private final TravelerRepository travelerRepository;
 

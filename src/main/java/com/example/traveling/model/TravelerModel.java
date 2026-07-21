@@ -1,7 +1,5 @@
 package com.example.traveling.model;
 
-import com.example.traveling.entity.Activity;
-import jakarta.persistence.Column;
 import lombok.*;
 
 import java.util.List;
