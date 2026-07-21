@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 
-public class TravelerService extends BaseServiceImpl<Traveler,Long,TravelerRepository> {
+public class TravelerService extends BaseServiceImpl<Traveler, Long, TravelerRepository> {
 
     private final TravelerRepository travelerRepository;
 

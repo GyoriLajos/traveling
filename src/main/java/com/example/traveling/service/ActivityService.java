@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class ActivityService extends BaseServiceImpl<Activity,Long,ActivityRepository> {
+public class ActivityService extends BaseServiceImpl<Activity, Long, ActivityRepository> {
 
     private final ActivityRepository activityRepository;
 

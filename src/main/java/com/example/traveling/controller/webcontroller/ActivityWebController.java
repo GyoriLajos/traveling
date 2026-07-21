@@ -25,7 +25,7 @@ public class ActivityWebController {
     @GetMapping("/newactivity")
     public String newActivity(Model model) {
         log.info("new activity (Thymeleaf)");
-        model.addAttribute("newactivity",new ActivityCreateModel());
+        model.addAttribute("newactivity", new ActivityCreateModel());
         return "activity-create";
     }
 
@@ -38,19 +38,19 @@ public class ActivityWebController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateActivityById(@PathVariable Long id,@ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
+    public String updateActivityById(@PathVariable Long id, @ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
         log.info("update activity (Thymeleaf)");
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
-        activityService.updateById(id,activity);
+        activityService.updateById(id, activity);
         return "redirect:/activities";
     }
 
     @GetMapping("/edit/{id}")
-    public String editActivity(@PathVariable Long id,Model model) {
+    public String editActivity(@PathVariable Long id, Model model) {
         log.info("edit activity (Thymeleaf)");
         Activity existingActivity = activityService.getEntityById(id);
         ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(existingActivity);
-        model.addAttribute("newactivity",existingActivity);
+        model.addAttribute("newactivity", existingActivity);
         return "activity-create";
     }
 
@@ -59,7 +59,7 @@ public class ActivityWebController {
         log.info("GET request Activity by Id (Thymeleaf)");
         Activity activity = activityService.getEntityById(id);
         ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(activity);
-        model.addAttribute("activity",activityCreateModel);
+        model.addAttribute("activity", activityCreateModel);
         return "activity-details";
     }
 
@@ -68,7 +68,7 @@ public class ActivityWebController {
         log.info("GET request Activity by Id (Thymeleaf)");
         Activity activity = activityService.getEntityById(id);
         ActivityModelWithTraveler activityCreateModel = ActivityMapper.mapActivityEntityToActivityModelWithTraveler(activity);
-        model.addAttribute("activity",activityCreateModel);
+        model.addAttribute("activity", activityCreateModel);
         return "activity-details";
     }
 
@@ -77,8 +77,8 @@ public class ActivityWebController {
         log.info("GET request of Activities list (Thymeleaf)");
         List<Activity> activityList = activityService.findAllEntities();
         List<ActivityCreateModel> activityCreateModelList = Mapper
-                .map(activityList,ActivityMapper::mapActivityEntityToActivityCreateModel);
-        model.addAttribute("activities",activityCreateModelList);
+                .map(activityList, ActivityMapper::mapActivityEntityToActivityCreateModel);
+        model.addAttribute("activities", activityCreateModelList);
         return "activity-list";
     }
 

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Slf4j
-public abstract class BaseServiceImpl<T,ID,R extends JpaRepository<T,ID>> implements BaseService<T,ID> {
+public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>> implements BaseService<T, ID> {
 
     protected final R repository;
 
@@ -23,20 +23,20 @@ public abstract class BaseServiceImpl<T,ID,R extends JpaRepository<T,ID>> implem
     public T updateById(ID id, T update) {
         Optional<T> existingEntity = repository.findById(id);
         if (existingEntity.isEmpty()) {
-            String message = String.format("Entity with id %s not found",id);
-            logAndThrowException(message,new NoSuchElementException(message));
+            String message = String.format("Entity with id %s not found", id);
+            logAndThrowException(message, new NoSuchElementException(message));
         }
         T updatedEntity = existingEntity.get();
-        updatemapper(updatedEntity,update);
+        updatemapper(updatedEntity, update);
 
         return repository.save(updatedEntity);
     }
 
     @Override
     public T getEntityById(ID id) {
-        return repository.findById(id).orElseThrow(()-> {
-            String message = String.format("Entity with id %s not found",id);
-            return logAndReturnException(new NoSuchElementException(message),message);
+        return repository.findById(id).orElseThrow(() -> {
+            String message = String.format("Entity with id %s not found", id);
+            return logAndReturnException(new NoSuchElementException(message), message);
         });
     }
 
@@ -45,7 +45,7 @@ public abstract class BaseServiceImpl<T,ID,R extends JpaRepository<T,ID>> implem
         List<T> activities = repository.findAll();
         if (activities.isEmpty()) {
             String message = "Entity database is empty";
-            logAndThrowException(message,new RuntimeException(message));
+            logAndThrowException(message, new RuntimeException(message));
         }
         return activities;
     }
@@ -53,8 +53,8 @@ public abstract class BaseServiceImpl<T,ID,R extends JpaRepository<T,ID>> implem
     @Override
     public void deleteEntityById(ID id) {
         if (!repository.existsById(id)) {
-            String message = String.format("Activity with id %s not found",id);
-            logAndThrowException(message,new NoSuchElementException(message));
+            String message = String.format("Activity with id %s not found", id);
+            logAndThrowException(message, new NoSuchElementException(message));
         }
         repository.deleteById(id);
     }
@@ -69,5 +69,5 @@ public abstract class BaseServiceImpl<T,ID,R extends JpaRepository<T,ID>> implem
         return exception;
     }
 
-    public abstract void updatemapper(T updatedEntity,T update);
+    public abstract void updatemapper(T updatedEntity, T update);
 }
