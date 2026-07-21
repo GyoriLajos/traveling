@@ -3,6 +3,7 @@ package com.example.traveling.controller;
 import com.example.traveling.entity.Activity;
 import com.example.traveling.model.ActivityModel;
 import com.example.traveling.model.ActivityCreateModel;
+import com.example.traveling.model.ActivityModelWithTraveler;
 import com.example.traveling.service.ActivityService;
 import com.example.traveling.util.ActivityMapper;
 import com.example.traveling.util.Mapper;
@@ -33,6 +34,7 @@ public class ActivityController {
     public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @RequestBody ActivityCreateModel updatedActCreateMo) {
         log.info("Request exist Activity update");
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(updatedActCreateMo);
+        activity.setId(id);
         Activity savedActivity = activityService.updateById(id,activity);
         return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
@@ -42,6 +44,13 @@ public class ActivityController {
         log.info("GET request Activity by Id");
         Activity activity = activityService.getEntityById(id);
         return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModel(activity));
+    }
+
+    @GetMapping("/{id}/travelers")
+    public ResponseEntity<ActivityModelWithTraveler> getActivityByIdWithTraveler(@PathVariable Long id) {
+        log.info("GET request Activity by Id");
+        Activity activity = activityService.getEntityById(id);
+        return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModelWithTraveler(activity));
     }
 
     @GetMapping
