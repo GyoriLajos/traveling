@@ -34,7 +34,6 @@ public class ActivityController {
     public ResponseEntity<ActivityModel> updateActivityById(@PathVariable Long id, @RequestBody ActivityCreateModel updatedActCreateMo) {
         log.info("Request exist Activity update");
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(updatedActCreateMo);
-        activity.setId(id);
         Activity savedActivity = activityService.updateById(id,activity);
         return ResponseEntity.ok(ActivityMapper.mapActivityEntityToActivityModel(savedActivity));
     }
