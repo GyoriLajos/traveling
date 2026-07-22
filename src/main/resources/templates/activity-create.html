@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Program kezelése</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 300px; padding: 8px; box-sizing: border-box; }
+        .error { color: red; font-size: 0.9em; }
+        .btn { padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<nav style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+    <a th:href="@{/destinations}" style="color: white; margin-right: 15px; text-decoration: none;">Úticélok</a>
+    <a th:href="@{/activities}" style="color: white; margin-right: 15px; text-decoration: none;">Programok</a>
+    <a th:href="@{/travelers}" style="color: white; text-decoration: none;">Utazók</a>
+</nav>
+
+<h1 th:text="${newactivity.name == null} ? 'Új Program létrehozása' : 'Program szerkesztése'">Program</h1>
+
+<form th:action="${newactivity.name == null} ? @{/activities} : @{/activities/update/{id}(id=${id})}"
+      th:object="${newactivity}"
+      method="post">
+
+    <div class="form-group">
+        <label for="name">Program neve:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="date">Dátum:</label>
+        <input type="date" id="date" th:field="*{date}" />
+        <div class="error" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="cost">Költség (Ft):</label>
+        <input type="number" step="0.01" id="cost" th:field="*{cost}" />
+        <div class="error" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Helyszín:</label>
+        <input type="text" id="location" th:field="*{location}" />
+        <div class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="destinationId">Úticél ID (Destination ID):</label>
+        <input type="number" id="destinationId" th:field="*{destinationId}" />
+        <div class="error" th:if="${#fields.hasErrors('destinationId')}" th:errors="*{destinationId}"></div>
+    </div>
+
+    <button type="submit" class="btn">Mentés</button>
+    <a th:href="@{/activities}" style="margin-left: 10px;">Mégse</a>
+</form>
+
+</body>
+</html>
