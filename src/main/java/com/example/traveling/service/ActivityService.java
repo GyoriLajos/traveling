@@ -7,6 +7,7 @@ import com.example.traveling.repository.DestinationRepository;
 import com.example.traveling.service.base.BaseServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 
@@ -21,6 +22,7 @@ public class ActivityService extends BaseServiceImpl<Activity, Long, ActivityRep
         this.destinationRepository = destinationRepository;
     }
 
+    @Transactional
     public Activity saveWithDestination(Activity activity, Long destinationId) {
         Destination destination = destinationRepository.findById(destinationId)
                 .orElseThrow(() -> new NoSuchElementException("Destination not found with id: " + destinationId));
@@ -29,7 +31,7 @@ public class ActivityService extends BaseServiceImpl<Activity, Long, ActivityRep
     }
 
     @Override
-    public void updatemapper(Activity updatedEntity, Activity update) {
+    public void updateMapper(Activity updatedEntity, Activity update) {
         updatedEntity.setName(update.getName());
         updatedEntity.setDate(update.getDate());
         updatedEntity.setCost(update.getCost());

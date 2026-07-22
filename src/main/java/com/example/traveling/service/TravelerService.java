@@ -8,18 +8,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-
 public class TravelerService extends BaseServiceImpl<Traveler, Long, TravelerRepository> {
-
-    private final TravelerRepository travelerRepository;
 
     public TravelerService(TravelerRepository repository) {
         super(repository);
-        this.travelerRepository = repository;
     }
 
     @Override
-    public void updatemapper(Traveler updatedEntity, Traveler update) {
+    public void updateMapper(Traveler updatedEntity, Traveler update) {
         updatedEntity.setFirstName(update.getFirstName());
         updatedEntity.setLastName(update.getLastName());
         updatedEntity.setEmail(update.getEmail());

@@ -3,22 +3,26 @@ package com.example.traveling.service.base;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly = true)
 public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>> implements BaseService<T, ID> {
 
     protected final R repository;
 
     @Override
+    @Transactional
     public T save(T entity) {
         return repository.save(entity);
     }
 
     @Override
+    @Transactional
     public T updateById(ID id, T update) {
         T existingEntity = repository.findById(id).orElseThrow(() -> {
             String message = String.format("Entity with id %s not found", id);
@@ -26,7 +30,7 @@ public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>> imp
             return new NoSuchElementException(message);
         });
 
-        updatemapper(existingEntity, update);
+        updateMapper(existingEntity, update);
         return repository.save(existingEntity);
     }
 
@@ -45,6 +49,7 @@ public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>> imp
     }
 
     @Override
+    @Transactional
     public void deleteEntityById(ID id) {
         if (!repository.existsById(id)) {
             String message = String.format("Entity with id %s not found", id);
@@ -54,5 +59,5 @@ public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>> imp
         repository.deleteById(id);
     }
 
-    public abstract void updatemapper(T updatedEntity, T update);
+    public abstract void updateMapper(T updatedEntity, T update);
 }
