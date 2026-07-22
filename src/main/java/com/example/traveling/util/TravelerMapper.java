@@ -33,7 +33,7 @@ public class TravelerMapper {
                         .phoneNumber(currentEntity.getPhoneNumber())
                         .categoryPreference(currentEntity.getCategoryPreference())
                         .budget(currentEntity.getBudget())
+                        .activities(map(currentEntity.getActivities(), ActivityMapper::mapActivityEntityToActivityModel))
                         .build());
     }
 }
-

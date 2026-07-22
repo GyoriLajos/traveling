@@ -94,7 +94,7 @@ class ActivityServiceTest {
         update.setDestination(newDestination);
 
         // ACT
-        activityService.updatemapper(existing, update);
+        activityService.updateMapper(existing, update);
 
         // ASSERT
         assertEquals("Új Név", existing.getName());

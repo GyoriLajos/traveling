@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Program részletei</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 5px; width: 450px; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+
+<nav style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+    <a th:href="@{/destinations}" style="color: white; margin-right: 15px; text-decoration: none;">Úticélok</a>
+    <a th:href="@{/activities}" style="color: white; margin-right: 15px; text-decoration: none;">Programok</a>
+    <a th:href="@{/travelers}" style="color: white; text-decoration: none;">Utazók</a>
+</nav>
+
+<h1>Program részletei</h1>
+
+<div class="card" th:object="${activity}">
+    <h2 th:text="*{name}">Program neve</h2>
+    <p><strong>Dátum:</strong> <span th:text="*{date}">2026-08-10</span></p>
+    <p><strong>Költség:</strong> <span th:text="*{cost}">50</span> Ft</p>
+    <p><strong>Helyszín:</strong> <span th:text="*{location}">Helyszín</span></p>
+
+    <!-- Ha vannak résztvevő utazók (ActivityModelWithTraveler esetén) -->
+    <div th:if="*{travelers != null}">
+        <h3>Résztvevő Utazók:</h3>
+        <ul>
+            <li th:each="t : *{travelers}"
+                th:text="${t.firstName + ' ' + t.lastName + ' (' + t.email + ')'}">
+                Név (email)
+            </li>
+        </ul>
+        <p th:if="${#lists.isEmpty(activity.travelers)}">Még senki nem jelentkezett erre a programra.</p>
+    </div>
+</div>
+
+<br>
+<a th:href="@{/activities}">← Vissza a listához</a>
+
+</body>
+</html>

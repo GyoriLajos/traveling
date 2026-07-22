@@ -3,6 +3,7 @@ package com.example.traveling.model;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import lombok.*;
 
@@ -24,5 +25,6 @@ public class TravelerCreateModel {
     private String phoneNumber;
     private String categoryPreference;
     @NotNull
+    @PositiveOrZero
     private Double budget;
 }

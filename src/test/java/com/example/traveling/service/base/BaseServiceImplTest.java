@@ -40,7 +40,7 @@ class BaseServiceImplTest {
         }
 
         @Override
-        public void updatemapper(TestEntity existingEntity, TestEntity update) {
+        public void updateMapper(TestEntity existingEntity, TestEntity update) {
             existingEntity.setName(update.getName());
         }
     }
