@@ -3,6 +3,7 @@ package com.example.traveling.controller;
 import com.example.traveling.entity.Destination;
 import com.example.traveling.model.DestinationCreateModel;
 import com.example.traveling.model.DestinationModel;
+import com.example.traveling.model.DestinationModelWithActivity;
 import com.example.traveling.service.DestinationService;
 import com.example.traveling.util.DestinationMapper;
 import com.example.traveling.util.Mapper;
@@ -57,5 +58,12 @@ public class DestinationController {
         log.info("Delete request of Destination by Id");
         destinationService.deleteEntityById(id);
         return ResponseEntity.status(204).build();
+    }
+
+    @GetMapping("/{id}/activities")
+    public ResponseEntity<DestinationModelWithActivity> getDestinationByIdWithActivities(@PathVariable Long id) {
+        log.info("GET request Destination by Id with Activities");
+        Destination destination = destinationService.getEntityById(id);
+        return ResponseEntity.ok(DestinationMapper.mapDestinationEntityToDestinationModelWithActivity(destination));
     }
 }
