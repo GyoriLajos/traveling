@@ -6,10 +6,12 @@ import com.example.traveling.model.ActivityModelWithTraveler;
 import com.example.traveling.service.ActivityService;
 import com.example.traveling.util.ActivityMapper;
 import com.example.traveling.util.Mapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,16 +32,25 @@ public class ActivityWebController {
     }
 
     @PostMapping
-    public String createActivity(@ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
+    public String createActivity(@Valid @ModelAttribute("newactivity") ActivityCreateModel activityCreateModel,
+                                 BindingResult bindingResult) {
         log.info("create activity (Thymeleaf)");
+        if (bindingResult.hasErrors()) {
+            return "activity-create";
+        }
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
         activityService.saveWithDestination(activity, activityCreateModel.getDestinationId());
         return "redirect:/activities";
     }
 
     @PostMapping("/update/{id}")
-    public String updateActivityById(@PathVariable Long id, @ModelAttribute("newactivity") ActivityCreateModel activityCreateModel) {
+    public String updateActivityById(@PathVariable Long id,
+                                     @Valid @ModelAttribute("newactivity") ActivityCreateModel activityCreateModel,
+                                     BindingResult bindingResult) {
         log.info("update activity (Thymeleaf)");
+        if (bindingResult.hasErrors()) {
+            return "activity-create";
+        }
         Activity activity = ActivityMapper.mapCreateActivityModelToActivityEntity(activityCreateModel);
         activityService.updateById(id, activity);
         return "redirect:/activities";
@@ -82,7 +93,7 @@ public class ActivityWebController {
         return "activity-list";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
         log.info("delete activity (Thymeleaf)");
         activityService.deleteEntityById(id);
