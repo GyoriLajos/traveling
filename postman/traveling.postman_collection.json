@@ -42,7 +42,54 @@
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
       },
-      "response": []
+      "response": [
+        {
+          "name": "/activities",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/activities",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "activities"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:00 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Colosseum és Forum Romanum túra\",\n        \"date\": \"2026-08-10\",\n        \"cost\": 45,\n        \"location\": \"Piazza del Colosseo\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Olasz tésztakészítő workshop\",\n        \"date\": \"2026-08-11\",\n        \"cost\": 65.5,\n        \"location\": \"Trastevere\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Szenso-dzsi templom látogatás\",\n        \"date\": \"2026-09-05\",\n        \"cost\": 0,\n        \"location\": \"Aszakusza\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Robot Étterem és fény show\",\n        \"date\": \"2026-09-06\",\n        \"cost\": 110,\n        \"location\": \"Sindzsuku\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Sagrada Família belépő tárlatvezetéssel\",\n        \"date\": \"2026-07-15\",\n        \"cost\": 5500,\n        \"location\": \"Carrer de Mallorca\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Katalán tapas & borkóstoló túra\",\n        \"date\": \"2026-07-16\",\n        \"cost\": 55,\n        \"location\": \"Gótikus negyed\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"Arany Körút buszos kirándulás\",\n        \"date\": \"2026-10-12\",\n        \"cost\": 85,\n        \"location\": \"BSI Bus Terminal\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Kék Fehérség (Blue Lagoon) fürdőzés\",\n        \"date\": \"2026-10-13\",\n        \"cost\": 150,\n        \"location\": \"Grindavík\"\n    },\n    {\n        \"id\": 12,\n        \"name\": \"Budapest\",\n        \"date\": \"2026-07-25\",\n        \"cost\": 15000,\n        \"location\": \"Barcelona, Fő utca 1\"\n    }\n]"
+        }
+      ]
     },
     {
       "name": "activities",
@@ -88,7 +135,63 @@
         },
         "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
       },
-      "response": []
+      "response": [
+        {
+          "name": "activities",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Budapest\",\n  \"date\": \"2026-07-25\",\n  \"cost\": 15000.0,\n  \"location\": \"Barcelona, Fő utca 1\",\n  \"destinationId\": 3\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/activities",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "activities"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:08 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 14,\n    \"name\": \"Budapest\",\n    \"date\": \"2026-07-25\",\n    \"cost\": 15000,\n    \"location\": \"Barcelona, Fő utca 1\"\n}"
+        }
+      ]
     },
     {
       "name": "travelers",
@@ -108,7 +211,54 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "travelers",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/travelers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "travelers"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:12 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Péter\",\n        \"lastName\": \"Kovács\",\n        \"email\": \"kovacs.peter@email.hu\",\n        \"phoneNumber\": \"+36301234567\",\n        \"categoryPreference\": \"Kultúra\",\n        \"budget\": 1500,\n        \"activities\": [\n            {\n                \"id\": 1,\n                \"name\": \"Colosseum és Forum Romanum túra\",\n                \"date\": \"2026-08-10\",\n                \"cost\": 45,\n                \"location\": \"Piazza del Colosseo\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Arany Körút buszos kirándulás\",\n                \"date\": \"2026-10-12\",\n                \"cost\": 85,\n                \"location\": \"BSI Bus Terminal\"\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"firstName\": \"Anna\",\n        \"lastName\": \"Nagy\",\n        \"email\": \"nagy.anna@email.hu\",\n        \"phoneNumber\": \"+36209876543\",\n        \"categoryPreference\": \"Gasztronómia\",\n        \"budget\": 2000,\n        \"activities\": [\n            {\n                \"id\": 2,\n                \"name\": \"Olasz tésztakészítő workshop\",\n                \"date\": \"2026-08-11\",\n                \"cost\": 65.5,\n                \"location\": \"Trastevere\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Katalán tapas & borkóstoló túra\",\n                \"date\": \"2026-07-16\",\n                \"cost\": 55,\n                \"location\": \"Gótikus negyed\"\n            }\n        ]\n    },\n    {\n        \"id\": 3,\n        \"firstName\": \"Gábor\",\n        \"lastName\": \"Szabó\",\n        \"email\": \"szabo.gabor@email.hu\",\n        \"phoneNumber\": null,\n        \"categoryPreference\": \"Kaland\",\n        \"budget\": 800,\n        \"activities\": [\n            {\n                \"id\": 4,\n                \"name\": \"Robot Étterem és fény show\",\n                \"date\": \"2026-09-06\",\n                \"cost\": 110,\n                \"location\": \"Sindzsuku\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Kék Fehérség (Blue Lagoon) fürdőzés\",\n                \"date\": \"2026-10-13\",\n                \"cost\": 150,\n                \"location\": \"Grindavík\"\n            }\n        ]\n    },\n    {\n        \"id\": 4,\n        \"firstName\": \"Eszter\",\n        \"lastName\": \"Tóth\",\n        \"email\": \"toth.eszter@email.hu\",\n        \"phoneNumber\": \"+36705551234\",\n        \"categoryPreference\": \"Pihenés\",\n        \"budget\": 1200,\n        \"activities\": [\n            {\n                \"id\": 3,\n                \"name\": \"Szenso-dzsi templom látogatás\",\n                \"date\": \"2026-09-05\",\n                \"cost\": 0,\n                \"location\": \"Aszakusza\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Sagrada Família belépő tárlatvezetéssel\",\n                \"date\": \"2026-07-15\",\n                \"cost\": 5500,\n                \"location\": \"Carrer de Mallorca\"\n            }\n        ]\n    },\n    {\n        \"id\": 6,\n        \"firstName\": \"Péter\",\n        \"lastName\": \"Kovács\",\n        \"email\": \"kovacs.peter@example.com\",\n        \"phoneNumber\": \"+36301234567\",\n        \"categoryPreference\": \"Kultúra és Gasztronómia\",\n        \"budget\": 300000,\n        \"activities\": []\n    }\n]"
+        }
+      ]
     },
     {
       "name": "destinations",
@@ -128,7 +278,54 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "destinations",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/destinations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "destinations"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:21 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 1,\n        \"cityName\": \"Róma\",\n        \"region\": \"Lazio\",\n        \"description\": \"Az örök város, tele történelemmel, ókori műemlékekkel és fantasztikus gasztronómiával.\",\n        \"popularity\": 95\n    },\n    {\n        \"id\": 2,\n        \"cityName\": \"Tokió\",\n        \"region\": \"Kantó\",\n        \"description\": \"Ahol a modern felhőkarcolók és a hagyományos szentélyek találkoznak.\",\n        \"popularity\": 90\n    },\n    {\n        \"id\": 3,\n        \"cityName\": \"Barcelona\",\n        \"region\": \"Katalónia\",\n        \"description\": \"Mediterrán tengerparti metropolisz Gaudí lenyűgöző építészetével.\",\n        \"popularity\": 88\n    },\n    {\n        \"id\": 4,\n        \"cityName\": \"Reykjavík\",\n        \"region\": \"Höfuðborgarsvæðið\",\n        \"description\": \"Izland fővárosa, tökéletes kiindulópont az északi fény és vulkáni tájak felfedezéséhez.\",\n        \"popularity\": 82\n    },\n    {\n        \"id\": 5,\n        \"cityName\": \"Budapest\",\n        \"region\": \"Magyarország\",\n        \"description\": \"fasza minden\",\n        \"popularity\": 5\n    }\n]"
+        }
+      ]
     },
     {
       "name": "activities/3",
@@ -149,7 +346,55 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "activities/3",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/activities/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "activities",
+                "3"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:28 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 3,\n    \"name\": \"Szenso-dzsi templom látogatás\",\n    \"date\": \"2026-09-05\",\n    \"cost\": 0,\n    \"location\": \"Aszakusza\"\n}"
+        }
+      ]
     },
     {
       "name": "activities/4/travelers",
@@ -171,7 +416,56 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "activities/4/travelers",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/activities/4/travelers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "activities",
+                "4",
+                "travelers"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:33 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 4,\n    \"name\": \"Robot Étterem és fény show\",\n    \"date\": \"2026-09-06\",\n    \"cost\": 110,\n    \"location\": \"Sindzsuku\",\n    \"travelers\": [\n        {\n            \"id\": 3,\n            \"firstName\": \"Gábor\",\n            \"lastName\": \"Szabó\",\n            \"email\": \"szabo.gabor@email.hu\",\n            \"phoneNumber\": null,\n            \"categoryPreference\": \"Kaland\",\n            \"budget\": 800,\n            \"activities\": [\n                {\n                    \"id\": 4,\n                    \"name\": \"Robot Étterem és fény show\",\n                    \"date\": \"2026-09-06\",\n                    \"cost\": 110,\n                    \"location\": \"Sindzsuku\"\n                },\n                {\n                    \"id\": 8,\n                    \"name\": \"Kék Fehérség (Blue Lagoon) fürdőzés\",\n                    \"date\": \"2026-10-13\",\n                    \"cost\": 150,\n                    \"location\": \"Grindavík\"\n                }\n            ]\n        }\n    ]\n}"
+        }
+      ]
     },
     {
       "name": "activities/5",
@@ -201,7 +495,64 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "activities/5",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Sagrada Família belépő tárlatvezetéssel\",\r\n    \"date\": \"2026-07-15\",\r\n    \"cost\": \"5500\",\r\n    \"location\": \"Carrer de Mallorca\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/activities/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "activities",
+                "5"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:38 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 5,\n    \"name\": \"Sagrada Família belépő tárlatvezetéssel\",\n    \"date\": \"2026-07-15\",\n    \"cost\": 5500,\n    \"location\": \"Carrer de Mallorca\"\n}"
+        }
+      ]
     },
     {
       "name": "/activities",
@@ -239,7 +590,54 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "/activities",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/travelers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "travelers"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:45 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Péter\",\n        \"lastName\": \"Kovács\",\n        \"email\": \"kovacs.peter@email.hu\",\n        \"phoneNumber\": \"+36301234567\",\n        \"categoryPreference\": \"Kultúra\",\n        \"budget\": 1500,\n        \"activities\": [\n            {\n                \"id\": 1,\n                \"name\": \"Colosseum és Forum Romanum túra\",\n                \"date\": \"2026-08-10\",\n                \"cost\": 45,\n                \"location\": \"Piazza del Colosseo\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Arany Körút buszos kirándulás\",\n                \"date\": \"2026-10-12\",\n                \"cost\": 85,\n                \"location\": \"BSI Bus Terminal\"\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"firstName\": \"Anna\",\n        \"lastName\": \"Nagy\",\n        \"email\": \"nagy.anna@email.hu\",\n        \"phoneNumber\": \"+36209876543\",\n        \"categoryPreference\": \"Gasztronómia\",\n        \"budget\": 2000,\n        \"activities\": [\n            {\n                \"id\": 2,\n                \"name\": \"Olasz tésztakészítő workshop\",\n                \"date\": \"2026-08-11\",\n                \"cost\": 65.5,\n                \"location\": \"Trastevere\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Katalán tapas & borkóstoló túra\",\n                \"date\": \"2026-07-16\",\n                \"cost\": 55,\n                \"location\": \"Gótikus negyed\"\n            }\n        ]\n    },\n    {\n        \"id\": 3,\n        \"firstName\": \"Gábor\",\n        \"lastName\": \"Szabó\",\n        \"email\": \"szabo.gabor@email.hu\",\n        \"phoneNumber\": null,\n        \"categoryPreference\": \"Kaland\",\n        \"budget\": 800,\n        \"activities\": [\n            {\n                \"id\": 4,\n                \"name\": \"Robot Étterem és fény show\",\n                \"date\": \"2026-09-06\",\n                \"cost\": 110,\n                \"location\": \"Sindzsuku\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Kék Fehérség (Blue Lagoon) fürdőzés\",\n                \"date\": \"2026-10-13\",\n                \"cost\": 150,\n                \"location\": \"Grindavík\"\n            }\n        ]\n    },\n    {\n        \"id\": 4,\n        \"firstName\": \"Eszter\",\n        \"lastName\": \"Tóth\",\n        \"email\": \"toth.eszter@email.hu\",\n        \"phoneNumber\": \"+36705551234\",\n        \"categoryPreference\": \"Pihenés\",\n        \"budget\": 1200,\n        \"activities\": [\n            {\n                \"id\": 3,\n                \"name\": \"Szenso-dzsi templom látogatás\",\n                \"date\": \"2026-09-05\",\n                \"cost\": 0,\n                \"location\": \"Aszakusza\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Sagrada Família belépő tárlatvezetéssel\",\n                \"date\": \"2026-07-15\",\n                \"cost\": 5500,\n                \"location\": \"Carrer de Mallorca\"\n            }\n        ]\n    },\n    {\n        \"id\": 6,\n        \"firstName\": \"Péter\",\n        \"lastName\": \"Kovács\",\n        \"email\": \"kovacs.peter@example.com\",\n        \"phoneNumber\": \"+36301234567\",\n        \"categoryPreference\": \"Kultúra és Gasztronómia\",\n        \"budget\": 300000,\n        \"activities\": []\n    }\n]"
+        }
+      ]
     },
     {
       "name": "travelers/2",
@@ -267,7 +665,59 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "travelers/2",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Budapest\",\n  \"date\": \"2026-07-25\",\n  \"cost\": 15000.0,\n  \"location\": \"Barcelona, Fő utca 1\",\n  \"destinationId\": 3\n  }"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/travelers/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "travelers",
+                "2"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:51 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 2,\n    \"firstName\": \"Anna\",\n    \"lastName\": \"Nagy\",\n    \"email\": \"nagy.anna@email.hu\",\n    \"phoneNumber\": \"+36209876543\",\n    \"categoryPreference\": \"Gasztronómia\",\n    \"budget\": 2000,\n    \"activities\": [\n        {\n            \"id\": 2,\n            \"name\": \"Olasz tésztakészítő workshop\",\n            \"date\": \"2026-08-11\",\n            \"cost\": 65.5,\n            \"location\": \"Trastevere\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Katalán tapas & borkóstoló túra\",\n            \"date\": \"2026-07-16\",\n            \"cost\": 55,\n            \"location\": \"Gótikus negyed\"\n        }\n    ]\n}"
+        }
+      ]
     },
     {
       "name": "travelers",
@@ -296,7 +746,59 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "travelers",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Péter\",\n  \"lastName\": \"Kovács\",\n  \"email\": \"kovacs.peter@example.com\",\n  \"phoneNumber\": \"+36301234567\",\n  \"categoryPreference\": \"Kultúra és Gasztronómia\",\n  \"budget\": 250000.0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/travelers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "travelers"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:10:57 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"timestamp\": \"2026-07-23T20:10:57.2263856\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"could not execute statement [Duplicate entry 'kovacs.peter@example.com' for key 'traveler.UKoohmjfd0aihbbty9s57wp3mfl'] [insert into traveler (budget,category_preference,email,first_name,last_name,phone_number) values (?,?,?,?,?,?)]; SQL [insert into traveler (budget,category_preference,email,first_name,last_name,phone_number) values (?,?,?,?,?,?)]; constraint [traveler.UKoohmjfd0aihbbty9s57wp3mfl]\",\n    \"path\": \"/api/travelers\"\n}"
+        }
+      ]
     },
     {
       "name": "travelers/6",
@@ -326,15 +828,72 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "travelers/6",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Péter\",\n  \"lastName\": \"Kovács\",\n  \"email\": \"kovacs.peter@example.com\",\n  \"phoneNumber\": \"+36301234567\",\n  \"categoryPreference\": \"Kultúra és Gasztronómia\",\n  \"budget\": 300000.0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/travelers/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "travelers",
+                "6"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:11:01 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 6,\n    \"firstName\": \"Péter\",\n    \"lastName\": \"Kovács\",\n    \"email\": \"kovacs.peter@example.com\",\n    \"phoneNumber\": \"+36301234567\",\n    \"categoryPreference\": \"Kultúra és Gasztronómia\",\n    \"budget\": 300000,\n    \"activities\": []\n}"
+        }
+      ]
     },
     {
-      "name": "travelers/5",
+      "name": "travelers/6",
       "request": {
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/travelers/5",
+          "raw": "http://localhost:8080/api/travelers/6",
           "protocol": "http",
           "host": [
             "localhost"
@@ -343,11 +902,51 @@
           "path": [
             "api",
             "travelers",
-            "5"
+            "6"
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "travelers/6",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/travelers/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "travelers",
+                "6"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:21:24 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
     },
     {
       "name": "destinations/3",
@@ -368,7 +967,55 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "destinations/3",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/destinations/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "destinations",
+                "3"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:12:01 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 3,\n    \"cityName\": \"Barcelona\",\n    \"region\": \"Katalónia\",\n    \"description\": \"Mediterrán tengerparti metropolisz Gaudí lenyűgöző építészetével.\",\n    \"popularity\": 88\n}"
+        }
+      ]
     },
     {
       "name": "destinations",
@@ -397,10 +1044,66 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "destinations",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cityName\": \"Barcelona\",\r\n  \"region\": \"Katalónia\",\r\n  \"description\": \"Gyönyörű tengerparti város Katalóniában, híres a Gaudi építészetről és a gasztronómiájáról.\",\r\n  \"popularity\": 95\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/destinations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "destinations"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:12:08 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 8,\n    \"cityName\": \"Barcelona\",\n    \"region\": \"Katalónia\",\n    \"description\": \"Gyönyörű tengerparti város Katalóniában, híres a Gaudi építészetről és a gasztronómiájáról.\",\n    \"popularity\": 95\n}"
+        }
+      ]
     },
     {
-      "name": "destinations/7",
+      "name": "destinations/8",
       "request": {
         "method": "PUT",
         "header": [],
@@ -414,7 +1117,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/api/destinations/7",
+          "raw": "http://localhost:8080/api/destinations/8",
           "protocol": "http",
           "host": [
             "localhost"
@@ -423,11 +1126,68 @@
           "path": [
             "api",
             "destinations",
-            "7"
+            "8"
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "destinations/8",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cityName\": \"Barcelona\",\r\n  \"region\": \"Katalónia\",\r\n  \"description\": \"Gyönyörű tengerparti város Katalóniában, híres a Gaudi építészetről és a gasztronómiájáról.\",\r\n  \"popularity\": 88\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/destinations/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "destinations",
+                "8"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:23:23 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 8,\n    \"cityName\": \"Barcelona\",\n    \"region\": \"Katalónia\",\n    \"description\": \"Gyönyörű tengerparti város Katalóniában, híres a Gaudi építészetről és a gasztronómiájáról.\",\n    \"popularity\": 88\n}"
+        }
+      ]
     },
     {
       "name": "destinations/7",
@@ -435,7 +1195,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/destinations/7",
+          "raw": "http://localhost:8080/api/destinations/8",
           "protocol": "http",
           "host": [
             "localhost"
@@ -444,19 +1204,59 @@
           "path": [
             "api",
             "destinations",
-            "7"
+            "8"
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "destinations/7",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/destinations/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "destinations",
+                "8"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:23:42 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
     },
     {
-      "name": "activities/13",
+      "name": "activities/14",
       "request": {
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/activities/13",
+          "raw": "http://localhost:8080/api/activities/14",
           "protocol": "http",
           "host": [
             "localhost"
@@ -465,11 +1265,51 @@
           "path": [
             "api",
             "activities",
-            "13"
+            "14"
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "activities/14",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/activities/14",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "activities",
+                "14"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Thu, 23 Jul 2026 18:24:30 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
     }
   ]
 }
