@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Utazók</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .btn { padding: 6px 12px; text-decoration: none; border-radius: 4px; display: inline-block; cursor: pointer; }
+        .btn-add { background-color: #28a745; color: white; margin-bottom: 15px; }
+        .btn-edit { background-color: #ffc107; color: black; }
+        .btn-delete { background-color: #dc3545; color: white; border: none; }
+        .btn-details { background-color: #17a2b8; color: white; }
+    </style>
+</head>
+<body>
+
+<nav style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+    <a th:href="@{/destinations}" style="color: white; margin-right: 15px; text-decoration: none;">Úticélok</a>
+    <a th:href="@{/activities}" style="color: white; margin-right: 15px; text-decoration: none;">Programok</a>
+    <a th:href="@{/travelers}" style="color: white; text-decoration: none;">Utazók</a>
+</nav>
+
+<h1>Utazók (Travelers)</h1>
+
+<a th:href="@{/travelers/newtraveler}" class="btn btn-add">+ Új utazó regisztrálása</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Név</th>
+        <th>Email</th>
+        <th>Telefonszám</th>
+        <th>Keret (Ft)</th>
+        <th>Kategória</th>
+        <th>Műveletek</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tr : ${travelers}">
+        <td th:text="${tr.firstName + ' ' + tr.lastName}">Gipsz Jakab</td>
+        <td th:text="${tr.email}">jakab@example.com</td>
+        <td th:text="${tr.phoneNumber}">+06201234567</td>
+        <td th:text="${tr.budget} + ' Ft'">1000 Ft</td>
+        <td th:text="${tr.categoryPreference}">Kultúra</td>
+        <td>
+            <a th:href="@{/travelers/{id}(id=${tr.id})}" class="btn btn-details">Részletek</a>
+            <a th:href="@{/travelers/edit/{id}(id=${tr.id})}" class="btn btn-edit">Szerkesztés</a>
+
+            <form th:action="@{/travelers/delete/{id}(id=${tr.id})}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-delete" onclick="return confirm('Biztosan törlöd?')">Törlés</button>
+            </form>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(travelers)}">
+        <td colspan="6" style="text-align: center;">Még nincs rögzített utazó.</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

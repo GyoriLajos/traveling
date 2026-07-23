@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Úticél részletei</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 5px; width: 400px; }
+    </style>
+</head>
+<body>
+
+<nav style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+    <a th:href="@{/destinations}" style="color: white; margin-right: 15px; text-decoration: none;">Úticélok</a>
+    <a th:href="@{/activities}" style="color: white; margin-right: 15px; text-decoration: none;">Programok</a>
+    <a th:href="@{/travelers}" style="color: white; text-decoration: none;">Utazók</a>
+</nav>
+
+<h1>Úticél részletei</h1>
+
+<div class="card" th:object="${destination}">
+    <h2><span th:text="*{cityName}">Város</span> (<span th:text="*{region}">Régió</span>)</h2>
+    <p><strong>Népszerűség:</strong> <span th:text="*{popularity}">5</span>/5</p>
+    <p><strong>Leírás:</strong></p>
+    <p th:text="*{description}">Leírás szövege...</p>
+</div>
+
+<br>
+<a th:href="@{/destinations}">← Vissza a listához</a>
+
+</body>
+</html>

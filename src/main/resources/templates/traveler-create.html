@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Utazó kezelése</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 300px; padding: 8px; box-sizing: border-box; }
+        .error { color: red; font-size: 0.9em; }
+        .btn { padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<nav style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+    <a th:href="@{/destinations}" style="color: white; margin-right: 15px; text-decoration: none;">Úticélok</a>
+    <a th:href="@{/activities}" style="color: white; margin-right: 15px; text-decoration: none;">Programok</a>
+    <a th:href="@{/travelers}" style="color: white; text-decoration: none;">Utazók</a>
+</nav>
+
+<h1 th:text="${newtraveler.firstName == null} ? 'Új Utazó felvétele' : 'Utazó adatai szerkesztése'">Utazó</h1>
+
+<form th:action="${newtraveler.firstName == null} ? @{/travelers} : @{/travelers/update/{id}(id=${id})}"
+      th:object="${newtraveler}"
+      method="post">
+
+    <div class="form-group">
+        <label for="firstName">Keresztnév:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" />
+        <div class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Vezetéknév:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" />
+        <div class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email cím:</label>
+        <input type="email" id="email" th:field="*{email}" />
+        <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber">Telefonszám:</label>
+        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
+        <div class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="categoryPreference">Kategória preferencia:</label>
+        <input type="text" id="categoryPreference" th:field="*{categoryPreference}" />
+        <div class="error" th:if="${#fields.hasErrors('categoryPreference')}" th:errors="*{categoryPreference}"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="budget">Költségvetés (Ft):</label>
+        <input type="number" step="0.01" id="budget" th:field="*{budget}" />
+        <div class="error" th:if="${#fields.hasErrors('budget')}" th:errors="*{budget}"></div>
+    </div>
+
+    <button type="submit" class="btn">Mentés</button>
+    <a th:href="@{/travelers}" style="margin-left: 10px;">Mégse</a>
+</form>
+
+</body>
+</html>

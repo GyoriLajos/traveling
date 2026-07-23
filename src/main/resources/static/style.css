@@ -1,0 +1,150 @@
+:root {
+    --primary-color: #2563eb;      /* Elegáns királykék */
+    --primary-hover: #1d4ed8;      /* Sötétebb kék az interakciókhoz */
+    --bg-color: #f8fafc;           /* Lágy, világosszürke háttér */
+    --card-bg: #ffffff;            /* Hófehér kártyák */
+    --text-main: #1e293b;          /* Sötétszürke szöveg (jobb mint a koromfekete) */
+    --text-muted: #64748b;         /* Halványabb szürke feliratokhoz */
+    --border-color: #e2e8f0;       /* Finom keret színek */
+    --danger-color: #ef4444;       /* Piros gombokhoz/hibákhoz */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 8px;                 /* Egységes lekerekítés */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+/* --- 2. KONTÉNER & KÁRTYA ELRENDEZÉS --- */
+.container {
+    max-width: 600px; /* Űrlapokhoz ideális szélesség */
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+h1, h2, h3 {
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- 3. ŰRLAPOK (FORMS) --- */
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--text-main);
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Fókusz állapot (amikor belekattint a felhasználó) */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* --- 4. GOMBOK --- */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: var(--text-main);
+    margin-top: 0.75rem;
+}
+
+.btn-secondary:hover {
+    background-color: #cbd5e1;
+}
+
+.btn:active {
+    transform: scale(0.99);
+}
+
+/* --- 5. TÁBLÁZATOK (pl. Activity/Destination Listákhoz) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+.error {
+    color: var(--danger-color); /* Piros szín */
+    font-size: 0.875rem;       /* Kicsit kisebb betűméret */
+    margin-top: 0.25rem;       /* Egy kis távolság az input mezőtől */
+    font-weight: 500;          /* Kicsit vastagabb betű */
+}

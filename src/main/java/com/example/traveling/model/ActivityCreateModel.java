@@ -18,13 +18,13 @@ public class ActivityCreateModel {
 
     @NotBlank
     private String name;
-    @NotNull
+    @NotNull(message = "A mezőt kötelöző kitölteni")
     private LocalDate date;
-    @NotNull
-    @PositiveOrZero
+    @NotNull(message = "A mezőt kötelező kitölteni")
+    @PositiveOrZero(message = "Az érték nem negatív szám")
     private Double cost;
-    @NotBlank
+    @NotBlank(message = "A mezőt kötelező kitölteni")
     private String location;
-    @NotNull
+    @NotNull(message = "A mezőt kötelező kitölteni")
     private Long destinationId;
 }

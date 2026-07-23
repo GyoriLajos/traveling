@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Úticélok listája</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .btn { padding: 6px 12px; text-decoration: none; border-radius: 4px; display: inline-block; cursor: pointer; }
+        .btn-add { background-color: #28a745; color: white; margin-bottom: 15px; }
+        .btn-edit { background-color: #ffc107; color: black; }
+        .btn-delete { background-color: #dc3545; color: white; border: none; }
+        .btn-details { background-color: #17a2b8; color: white; }
+    </style>
+</head>
+<body>
+
+<nav style="background-color: #333; padding: 10px; margin-bottom: 20px;">
+    <a th:href="@{/destinations}" style="color: white; margin-right: 15px; text-decoration: none;">Úticélok</a>
+    <a th:href="@{/activities}" style="color: white; margin-right: 15px; text-decoration: none;">Programok</a>
+    <a th:href="@{/travelers}" style="color: white; text-decoration: none;">Utazók</a>
+</nav>
+
+<h1>Úticélok (Destinations)</h1>
+
+<a th:href="@{/destinations/newdestination}" class="btn btn-add">+ Új úticél hozzáadása</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Város</th>
+        <th>Régió</th>
+        <th>Népszerűség</th>
+        <th>Műveletek</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dest : ${destinations}">
+        <td th:text="${dest.cityName}">Párizs</td>
+        <td th:text="${dest.region}">Franciaország</td>
+        <td th:text="${dest.popularity}">5</td>
+        <td>
+            <a th:href="@{/destinations/{id}(id=${dest.id})}" class="btn btn-details">Részletek</a>
+            <a th:href="@{/destinations/edit/{id}(id=${dest.id})}" class="btn btn-edit">Szerkesztés</a>
+
+            <form th:action="@{/destinations/delete/{id}(id=${dest.id})}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-delete" onclick="return confirm('Biztosan törlöd?')">Törlés</button>
+            </form>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(destinations)}">
+        <td colspan="5" style="text-align: center;">Még nincs rögzített úticél.</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

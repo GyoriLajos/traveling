@@ -2,6 +2,7 @@ package com.example.traveling.controller.webcontroller;
 
 import com.example.traveling.entity.Activity;
 import com.example.traveling.model.ActivityCreateModel;
+import com.example.traveling.model.ActivityModel;
 import com.example.traveling.model.ActivityModelWithTraveler;
 import com.example.traveling.service.ActivityService;
 import com.example.traveling.util.ActivityMapper;
@@ -69,8 +70,8 @@ public class ActivityWebController {
     public String getActivityById(@PathVariable Long id, Model model) {
         log.info("GET request Activity by Id (Thymeleaf)");
         Activity activity = activityService.getEntityById(id);
-        ActivityCreateModel activityCreateModel = ActivityMapper.mapActivityEntityToActivityCreateModel(activity);
-        model.addAttribute("activity", activityCreateModel);
+        ActivityModel activityModel = ActivityMapper.mapActivityEntityToActivityModel(activity);
+        model.addAttribute("activity", activityModel);
         return "activity-details";
     }
 
@@ -78,8 +79,8 @@ public class ActivityWebController {
     public String getActivityByIdWithTraveler(@PathVariable Long id, Model model) {
         log.info("GET request Activity by Id (Thymeleaf)");
         Activity activity = activityService.getEntityById(id);
-        ActivityModelWithTraveler activityCreateModel = ActivityMapper.mapActivityEntityToActivityModelWithTraveler(activity);
-        model.addAttribute("activity", activityCreateModel);
+        ActivityModelWithTraveler activityModelWithTraveler = ActivityMapper.mapActivityEntityToActivityModelWithTraveler(activity);
+        model.addAttribute("activity", activityModelWithTraveler);
         return "activity-details";
     }
 
@@ -87,9 +88,9 @@ public class ActivityWebController {
     public String findAllActivities(Model model) {
         log.info("GET request of Activities list (Thymeleaf)");
         List<Activity> activityList = activityService.findAllEntities();
-        List<ActivityCreateModel> activityCreateModelList = Mapper
-                .map(activityList, ActivityMapper::mapActivityEntityToActivityCreateModel);
-        model.addAttribute("activities", activityCreateModelList);
+        List<ActivityModel> activityModelList = Mapper
+                .map(activityList, ActivityMapper::mapActivityEntityToActivityModel);
+        model.addAttribute("activities", activityModelList);
         return "activity-list";
     }
 
