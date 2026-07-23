@@ -31,7 +31,7 @@ public class DestinationWebController {
     }
 
     @PostMapping
-    public String createDestination(@Valid @ModelAttribute("newdestination") DestinationCreateModel destinationCreateModel,
+    public String createDestination(@ModelAttribute("newdestination")@Valid DestinationCreateModel destinationCreateModel,
                                     BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "destination-create";
@@ -43,7 +43,7 @@ public class DestinationWebController {
 
     @PostMapping("/update/{id}")
     public String updateDestinationById(@PathVariable Long id,
-                                        @Valid @ModelAttribute("newdestination") DestinationCreateModel destinationCreateModel,
+                                        @ModelAttribute("newdestination")@Valid DestinationCreateModel destinationCreateModel,
                                         BindingResult bindingResult) {
         log.info("update destination (Thymeleaf)");
         if (bindingResult.hasErrors()) {

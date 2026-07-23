@@ -33,7 +33,7 @@ public class ActivityWebController {
     }
 
     @PostMapping
-    public String createActivity(@Valid @ModelAttribute("newactivity") ActivityCreateModel activityCreateModel,
+    public String createActivity(@ModelAttribute("newactivity")@Valid ActivityCreateModel activityCreateModel,
                                  BindingResult bindingResult) {
         log.info("create activity (Thymeleaf)");
         if (bindingResult.hasErrors()) {
@@ -46,7 +46,7 @@ public class ActivityWebController {
 
     @PostMapping("/update/{id}")
     public String updateActivityById(@PathVariable Long id,
-                                     @Valid @ModelAttribute("newactivity") ActivityCreateModel activityCreateModel,
+                                     @ModelAttribute("newactivity")@Valid ActivityCreateModel activityCreateModel,
                                      BindingResult bindingResult) {
         log.info("update activity (Thymeleaf)");
         if (bindingResult.hasErrors()) {

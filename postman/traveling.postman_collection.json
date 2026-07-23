@@ -1,0 +1,475 @@
+{
+  "info": {
+    "_postman_id": "0a184222-d762-4b9d-879c-1e36c1d3d9f1",
+    "name": "traveling",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56251038",
+    "_collection_link": "https://go.postman.co/collection/56251038-0a184222-d762-4b9d-879c-1e36c1d3d9f1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "/activities",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/activities",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "activities"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "activities",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Budapest\",\n  \"date\": \"2026-07-25\",\n  \"cost\": 15000.0,\n  \"location\": \"Barcelona, Fő utca 1\",\n  \"destinationId\": 3\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/activities",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "activities"
+          ]
+        },
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "travelers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/travelers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "travelers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "destinations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/destinations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "destinations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "activities/3",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/activities/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "activities",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "activities/4/travelers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/activities/4/travelers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "activities",
+            "4",
+            "travelers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "activities/5",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Sagrada Família belépő tárlatvezetéssel\",\r\n    \"date\": \"2026-07-15\",\r\n    \"cost\": \"5500\",\r\n    \"location\": \"Carrer de Mallorca\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/activities/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "activities",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/activities",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/travelers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "travelers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "travelers/2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Budapest\",\n  \"date\": \"2026-07-25\",\n  \"cost\": 15000.0,\n  \"location\": \"Barcelona, Fő utca 1\",\n  \"destinationId\": 3\n  }"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/travelers/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "travelers",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "travelers",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Péter\",\n  \"lastName\": \"Kovács\",\n  \"email\": \"kovacs.peter@example.com\",\n  \"phoneNumber\": \"+36301234567\",\n  \"categoryPreference\": \"Kultúra és Gasztronómia\",\n  \"budget\": 250000.0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/travelers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "travelers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "travelers/6",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Péter\",\n  \"lastName\": \"Kovács\",\n  \"email\": \"kovacs.peter@example.com\",\n  \"phoneNumber\": \"+36301234567\",\n  \"categoryPreference\": \"Kultúra és Gasztronómia\",\n  \"budget\": 300000.0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/travelers/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "travelers",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "travelers/5",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/travelers/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "travelers",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "destinations/3",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/destinations/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "destinations",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "destinations",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cityName\": \"Barcelona\",\r\n  \"region\": \"Katalónia\",\r\n  \"description\": \"Gyönyörű tengerparti város Katalóniában, híres a Gaudi építészetről és a gasztronómiájáról.\",\r\n  \"popularity\": 95\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/destinations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "destinations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "destinations/7",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cityName\": \"Barcelona\",\r\n  \"region\": \"Katalónia\",\r\n  \"description\": \"Gyönyörű tengerparti város Katalóniában, híres a Gaudi építészetről és a gasztronómiájáról.\",\r\n  \"popularity\": 88\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/destinations/7",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "destinations",
+            "7"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "destinations/7",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/destinations/7",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "destinations",
+            "7"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "activities/13",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/activities/13",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "activities",
+            "13"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

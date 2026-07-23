@@ -31,7 +31,7 @@ public class TravelerWebController {
     }
 
     @PostMapping
-    public String createTraveler(@Valid @ModelAttribute("newtraveler") TravelerCreateModel travelerCreateModel,
+    public String createTraveler(@ModelAttribute("newtraveler")@Valid TravelerCreateModel travelerCreateModel,
                                  BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "traveler-create";
@@ -43,7 +43,7 @@ public class TravelerWebController {
 
     @PostMapping("/update/{id}")
     public String updateTravelerById(@PathVariable Long id,
-                                     @Valid @ModelAttribute("newtraveler") TravelerCreateModel travelerCreateModel,
+                                     @ModelAttribute("newtraveler")@Valid TravelerCreateModel travelerCreateModel,
                                      BindingResult bindingResult) {
         log.info("update traveler (Thymeleaf)");
         if (bindingResult.hasErrors()) {
